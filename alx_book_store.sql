@@ -1,19 +1,19 @@
-DROP DATABASE IF EXISTS alx_book_store;
+-- DROP DATABASE IF EXISTS alx_book_store;
 CREATE DATABASE IF NOT EXISTS alx_book_store;
 USE alx_book_store;
 
-DROP TABLE IF EXISTS books;
-DROP TABLE IF EXISTS authors;
-DROP TABLE IF EXISTS customers;
-DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS order_details;
+DROP TABLE IF EXISTS Books;
+DROP TABLE IF EXISTS Authors;
+DROP TABLE IF EXISTS Customers;
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS Order_details;
 
-CREATE TABLE authors(
+CREATE TABLE Authors(
     author_id INT PRIMARY KEY,
     author_name VARCHAR(215)
 );
 
-CREATE TABLE books(
+CREATE TABLE Books(
     book_id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(130),
     author_id INT,
@@ -23,25 +23,25 @@ CREATE TABLE books(
 );
 
 
-CREATE TABLE customers(
+CREATE TABLE Customers(
     customer_id INT PRIMARY KEY AUTO_INCREMENT,
     customer_name VARCHAR(215),
     email VARCHAR(215) UNIQUE,
     address TEXT
     );
     
-CREATE TABLE orders(
+CREATE TABLE Orders(
 	order_id INT Primary Key AUTO_INCREMENT,
 	customer_id INT,
 	order_date DATE,
-	FOREIGN KEY(customer_id) REFERENCES customers(customer_id)
+	FOREIGN KEY(customer_id) REFERENCES customers(Customer_id)
 );
 
-CREATE TABLE order_details(
+CREATE TABLE Order_Details(
     orderdetailid INT PRIMARY KEY AUTO_INCREMENT,
     order_id INT,
     book_id INT,
     quantity DOUBLE,
-    FOREIGN KEY(order_id) REFERENCES orders(order_id),
-    FOREIGN KEY(book_id) REFERENCES books(book_id)
+    FOREIGN KEY(order_id) REFERENCES Orders(order_id),
+    FOREIGN KEY(book_id) REFERENCES Books(book_id)
 );
